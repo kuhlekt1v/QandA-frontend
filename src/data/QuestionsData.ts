@@ -48,7 +48,13 @@ const questions: QuestionData[] = [
   },
 ];
 
+// Wait specified number of milliseconds before preceding.
+const wait = (ms: number): Promise<void> => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 // Returns questions from QuestionData where answer length is 0.
-export const getUnansweredQuestions = (): QuestionData[] => {
+export const getUnansweredQuestions = async (): Promise<QuestionData[]> => {
+  await wait(500);
   return questions.filter((q) => q.answers.length === 0);
 };
