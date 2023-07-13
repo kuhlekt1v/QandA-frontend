@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import { Page } from '../components/Page';
+import { useNavigate } from 'react-router';
 import { PageTitle } from '../components/PageTitle';
 import { QuestionList } from '../components/QuestionList';
 import { getUnansweredQuestions, QuestionData } from '../data/QuestionsData';
@@ -25,8 +26,9 @@ export const HomePage = () => {
     doGetUnansweredQuestions();
   }, []);
 
+  const navigate = useNavigate();
   const handleAskQuestionClick = () => {
-    console.log('TODO - move to the AskPage');
+    navigate('ask');
   };
 
   return (

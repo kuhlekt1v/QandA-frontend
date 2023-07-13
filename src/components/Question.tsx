@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { QuestionData } from '../data/QuestionsData';
 
 import { css } from '@emotion/react';
@@ -23,7 +24,15 @@ export const Question = ({ data, showContent = true }: Props) => {
           font-size: 19px;
         `}
       >
-        {data.title}
+        <Link
+          css={css`
+            text-decoration: none;
+            color: ${gray2};
+          `}
+          to={`/questions/${data.questionId}`}
+        >
+          {data.title}
+        </Link>
       </div>
       {/* Truncate content if longer than 50 characters. */}
       {showContent && (

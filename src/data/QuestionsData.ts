@@ -58,3 +58,24 @@ export const getUnansweredQuestions = async (): Promise<QuestionData[]> => {
   await wait(500);
   return questions.filter((q) => q.answers.length === 0);
 };
+
+// Simulates a webrequest to get a question.
+export const getQuestion = async (questionId: number): Promise<QuestionData | null> => {
+  await wait(500);
+
+  const results = questions.filter((q) => q.questionId === questionId);
+  return results.length === 0 ? null : results[0];
+};
+
+/* Simulate a search via web request. Query returns results where 'criteria'
+   matches any part of question title or content.
+*/
+export const searchQuestions = async (criteria: string): Promise<QuestionData[]> => {
+  await wait(500);
+
+  return questions.filter(
+    (q) =>
+      q.title.toLowerCase().indexOf(criteria.toLowerCase()) >= 0 ||
+      q.content.toLowerCase().indexOf(criteria.toLowerCase()) >= 0,
+  );
+};
